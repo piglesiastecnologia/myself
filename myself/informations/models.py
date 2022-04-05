@@ -14,13 +14,13 @@ class Person(models.Model):
     last_name = models.CharField(max_length=155, blank=False, null=False)
     email = models.EmailField()
     date_of_birth = models.DateField()
-    gender = models.CharField(choices=Gender.choices)
+    gender = models.CharField(max_length=30, choices=Gender.choices)
     other_gender = models.CharField(max_length=25)
     phone = models.CharField(max_length=30)
 
     summary = models.TextField()
 
-    job_applied = models.CharField(max_length=100)
+    job_position = models.CharField(max_length=100)
 
 
 class PersonAddress(models.Model):
@@ -37,7 +37,7 @@ class PersonSocialMedia(models.Model):
         OTHER = 'Other', _('Other')
 
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
-    socialmedia = models.CharField(choices=SocialMedia)
+    socialmedia = models.CharField(max_length=30, choices=SocialMedia.choices)
 
 
 class PersonLanguages(models.Model):
@@ -49,6 +49,6 @@ class PersonLanguages(models.Model):
 
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
     language = models.CharField(max_length=50)
-    type = models.IntegerField(choices=Type)
+    type = models.IntegerField(choices=Type.choices)
     proficiency = models.IntegerField()
 
